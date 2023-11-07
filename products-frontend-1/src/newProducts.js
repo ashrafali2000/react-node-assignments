@@ -1,7 +1,30 @@
-export default function AddProduct({addProductHandler}) {
+import {useRef} from "react"
+import axios from "./axios"
+export default function AddProduct() {
 
-const onSubmitHandler = () => {
+  
+  const titleRef = useRef();
+  const priceRef = useRef();
+  const imgUrlRef = useRef();
+  
+  const onSubmitHandler = async (event) => {
+    event.preventDefault();
+    const title = titleRef.current.value;
+    const price = priceRef.current.value;
+    const image = imgUrlRef.current.value;
+    
+  await axios.post("/products",{
+      title,
+      price,
+      image,
+  },
+  {
+       headers: {
+        'Content-Type': 'multipart/form-data'
+      }
 
+    }).then(response => console.log(response))
+// addProductHandler(title, price, image);
 }
 
     return (
@@ -19,17 +42,18 @@ const onSubmitHandler = () => {
           </div>
   
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form className="space-y-6" action="#" method="POST" onSubmit={onSubmitHandler}>
+            <form className="space-y-6"  method="POST" onSubmit={onSubmitHandler}>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-                  Email address
+                <label htmlFor="title" className="block text-sm font-medium leading-6 text-gray-900">
+                  Title
                 </label>
                 <div className="mt-2">
                   <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    autoComplete="email"
+                    id="title"
+                    name="title"
+                    type="text"
+                    ref={titleRef}
+                    autoComplete="title"
                     required
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
@@ -38,21 +62,35 @@ const onSubmitHandler = () => {
   
               <div>
                 <div className="flex items-center justify-between">
-                  <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
-                    Password
+                  <label htmlFor="price" className="block text-sm font-medium leading-6 text-gray-900">
+                    Price
                   </label>
-                  <div className="text-sm">
-                    <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
-                      Forgot password?
-                    </a>
-                  </div>
                 </div>
                 <div className="mt-2">
                   <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    autoComplete="current-password"
+                    id="price"
+                    name="price"
+                    type="number"
+                    ref={priceRef}
+                    autoComplete="price"
+                    required
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+              <div>
+                <div className="flex items-center justify-between">
+                  <label htmlFor="ImgUrl" className="block text-sm font-medium leading-6 text-gray-900">
+                  ImgUrl
+                  </label>
+                </div>
+                <div className="mt-2">
+                  <input
+                    id="ImgUrl"
+                    name="ImgUrl"
+                    type="url"
+                    ref={imgUrlRef}
+                    autoComplete="ImgUrl"
                     required
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />

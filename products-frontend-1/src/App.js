@@ -9,13 +9,13 @@ function App() {
     productUrl.get("/products").then(res => setProduct(res.data.products));
   }, [])
   
-  const addProductHandler = () => {
-
-  }
+  // const addProductHandler = (title, price, image) => {
+   
+  // }
   return (
     <div className="App">
       {/* {product.map(p => <Card key={p.pId}> {p.title}</Card> )} */}
-      <AddProduct addProductHandler = {addProductHandler}></AddProduct>
+      <AddProduct ></AddProduct>
     </div>
   );
 }
