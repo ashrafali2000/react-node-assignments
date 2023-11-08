@@ -6,24 +6,31 @@ export default function AddProduct() {
   const titleRef = useRef();
   const priceRef = useRef();
   const imgUrlRef = useRef();
+  const ratingRef = useRef();
+  const stockRef = useRef();
+  const brandsRef = useRef();
+  const categoryRef = useRef();
+  const thumbnailRef = useRef();
+  const discountPercentageRef = useRef();
+  const descriptionRef = useRef();
   
-  const onSubmitHandler = async (event) => {
+  const onSubmitHandler = (event) => {
     event.preventDefault();
     const title = titleRef.current.value;
     const price = priceRef.current.value;
-    const image = imgUrlRef.current.value;
+    const images = imgUrlRef.current.value;
+    const description = descriptionRef.current.value;
+    const rating = ratingRef.current.value;
+    const stock = stockRef.current.value;
+    const brands = brandsRef.current.value;
+    const category = categoryRef.current.value;
+    const thumbnail = thumbnailRef.current.value;
+    const discountPercentage = discountPercentageRef.current.value;
     
-  await axios.post("/products",{
-      title,
-      price,
-      image,
-  },
-  {
-       headers: {
-        'Content-Type': 'multipart/form-data'
-      }
+  axios.post("/products",{
+      title, price, images, description, rating, stock, brands, category, thumbnail, discountPercentage
 
-    }).then(response => console.log(response))
+  }).then(response => alert(response.data.message)).catch(err => console.log(err));
 // addProductHandler(title, price, image);
 }
 
@@ -37,7 +44,7 @@ export default function AddProduct() {
               alt="Your Company"
             />
             <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-              Sign in to your account
+              Add new Product
             </h2>
           </div>
   
@@ -59,7 +66,22 @@ export default function AddProduct() {
                   />
                 </div>
               </div>
-  
+              <div>
+                <label htmlFor="Description" className="block text-sm font-medium leading-6 text-gray-900">
+                  Description
+                </label>
+                <div className="mt-2">
+                  <input
+                    id="Description"
+                    name="Description"
+                    type="text"
+                    ref={descriptionRef}
+                    autoComplete="Description"
+                    required
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
               <div>
                 <div className="flex items-center justify-between">
                   <label htmlFor="price" className="block text-sm font-medium leading-6 text-gray-900">
@@ -78,6 +100,104 @@ export default function AddProduct() {
                   />
                 </div>
               </div>
+              <div>
+                <label htmlFor="DiscountPercentage" className="block text-sm font-medium leading-6 text-gray-900">
+                  DiscountPercentage
+                </label>
+                <div className="mt-2">
+                  <input
+                    id="DiscountPercentage"
+                    name="DiscountPercentage"
+                    type="text"
+                    ref={discountPercentageRef}
+                    autoComplete="DiscountPercentage"
+                    required
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+              <div>
+                <label htmlFor="Rating" className="block text-sm font-medium leading-6 text-gray-900">
+                  Rating
+                </label>
+                <div className="mt-2">
+                  <input
+                    id="Rating"
+                    name="Rating"
+                    type="text"
+                    ref={ratingRef}
+                    autoComplete="Rating"
+                    required
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+              <div>
+                <label htmlFor="Stock" className="block text-sm font-medium leading-6 text-gray-900">
+                  Stock
+                </label>
+                <div className="mt-2">
+                  <input
+                    id="Stock"
+                    name="Stock"
+                    type="text"
+                    ref={stockRef}
+                    autoComplete="Stock"
+                    required
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+              <div>
+                <label htmlFor="Brands" className="block text-sm font-medium leading-6 text-gray-900">
+                  Brands
+                </label>
+                <div className="mt-2">
+                  <input
+                    id="Brands"
+                    name="Brands"
+                    type="text"
+                    ref={brandsRef}
+                    autoComplete="Brands"
+                    required
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+              <div>
+                <label htmlFor="Category" className="block text-sm font-medium leading-6 text-gray-900">
+                  Category
+                </label>
+                <div className="mt-2">
+                  <input
+                    id="Category"
+                    name="Category"
+                    type="text"
+                    ref={categoryRef}
+                    autoComplete="Category"
+                    required
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+              <div>
+                <label htmlFor="Thumbnail" className="block text-sm font-medium leading-6 text-gray-900">
+                  Thumbnail
+                </label>
+                <div className="mt-2">
+                  <input
+                    id="Thumbnail"
+                    name="Thumbnail"
+                    type="url"
+                    ref={thumbnailRef}
+                    autoComplete="Thumbnail"
+                    required
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
+              </div>
+  
+             
               <div>
                 <div className="flex items-center justify-between">
                   <label htmlFor="ImgUrl" className="block text-sm font-medium leading-6 text-gray-900">
