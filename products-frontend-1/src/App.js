@@ -9,12 +9,9 @@ function App() {
     productUrl.get("/products").then(res => setProduct(res.data.products));
   }, [])
   
-  // const addProductHandler = (title, price, image) => {
-   
-  // }
   return (
     <div className="App">
-      {/* {product.map(p => <Card key={p.pId}> {p.title}</Card> )} */}
+      {product.map(p => <Card key={p.pId}> {p.title}</Card> )}
       <AddProduct ></AddProduct>
     </div>
   );
