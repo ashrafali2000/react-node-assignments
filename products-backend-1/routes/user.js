@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const users = require("../data/user.json");
-const { createUser } = require("../controller/auth");
+const users = require("../db/user.json");
+const { createUser } = require("../controllers/auth");
 
 // get all user Api
 router.get("/", (req, res) => {

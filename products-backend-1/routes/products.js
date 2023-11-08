@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const path = require("path");
-const allProducts = require("../data/products.json");
-const { addProduct, findProduct } = require("../model/product");
+const allProducts = require("../db/products.json");
+const { addProduct, findProduct } = require("../models/product");
 
 const productFile = path.join(process.cwd(), "views", "newProduct.html");
 

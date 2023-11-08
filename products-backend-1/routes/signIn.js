@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const path = require("path");
-const { login } = require("../controller/auth");
+const { login } = require("../controllers/auth");
 
 const signInFile = path.join(process.cwd(), "views", "signIn.html");
 
