@@ -1,19 +1,61 @@
 const express = require("express");
+const bodyParser = require("body-parser")
+const indexRoute = require("./routes/index");
+const product = require("./routes/products");
+const signUp = require("./routes/signUp");
+const signIn = require("./routes/signIn");
+const user = require("./routes/user");
 const app = express();
-const cors = require("cors");
-const PORT = 8000;
-const products = require("./routes/product");
+const path = require("path");
+// const signInjs = ;
 
-app.use(cors());
+const port = 3000;
 
+app.use(bodyParser.urlencoded({extends:false}))
+app.use(bodyParser.json());
 
-app.use("/products",products);
+app.use(express.static(path.join(process.cwd(), "public")))
 
+// MidddleWare
+// app.use("/index", (req, res, nex) => {
+//   req.body = "hello body ";
+//   nex();
+//   // res.send("Hello from middlerWare")
+// });
+// app.get("/products", poroducts);
+// app.get("/prodcuts", (req, res, next) => {
+//   res.send(poroducts)
+//   next()
+// })
 
+// Controller
+app.use("/", indexRoute);
 
+// Query
+// app.get("/search", (req, res) => {
+//     const {q} =  req.query;
+//     if(!q) {
+//      res.send("Data not Found")
+//     }else{
+//     res.send(q)
+//     }
+//  })
 
+// Products MiddleWare
+app.use("/products", product);
 
-app.listen(PORT, () => {
-console.log(`Server is running On Port ${PORT}`)
-}
-)
+// Users MiddleWare
+app.use("/users", user);
+
+// User created  MiddleWare
+// app.use("/users", user);
+
+// SignUp MiddleWare
+app.use("/signup", signUp);
+
+// SignIn MiddleWare
+app.use("/signin", signIn);
+
+app.listen(port, (req, res) => {
+  console.log(`Server listen on Port ${port}`);
+});
