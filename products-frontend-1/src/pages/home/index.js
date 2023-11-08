@@ -93,7 +93,7 @@ export default function Home() {
           partialVisible={false}
         >
           {imagesUrlElectronics.map((img) => (
-            <div>
+            <div key={Math.random()}>
               <img
                 className="md:w-[300px] md:h-[300px] w-[200px] h-[200px]  object-cover object-center"
                 src={img.url}
@@ -116,7 +116,7 @@ export default function Home() {
           partialVisible={false}
         >
           {imagesUrlShirts.map((img) => (
-            <div>
+            <div key={Math.random()}>
               <img
                 className="md:w-[300px] md:h-[300px] w-[200px] h-[200px]  object-cover object-center"
                 src={img.url}
