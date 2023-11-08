@@ -1,18 +1,20 @@
 const express = require("express");
-const bodyParser = require("body-parser")
+// const bodyParser = require("body-parser")
+const cors = require('cors');
 const indexRoute = require("./routes/index");
 const product = require("./routes/products");
 const signUp = require("./routes/signUp");
 const signIn = require("./routes/signIn");
 const user = require("./routes/user");
+
 const app = express();
 const path = require("path");
 // const signInjs = ;
-
+app.use(cors());
 const port = 8000;
 
-app.use(bodyParser.urlencoded({extends:false}))
-app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({extends:false}))
+app.use(express.json());
 
 app.use(express.static(path.join(process.cwd(), "public")))
 

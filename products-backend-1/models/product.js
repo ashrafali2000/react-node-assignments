@@ -1,24 +1,10 @@
 const path = require("path")
 const fs = require("fs");
-const e = require("express");
+const express = require("express");
 const {uid} = require("uid/single")
-const productJsonFile = path.join(process.cwd(),"data", "products.json");
+const productJsonFile = path.join(process.cwd(),"db", "products.json");
 
-const addProduct = (data) => {
-    fs.readFile(productJsonFile, "utf8", (err, productData) => {
-        let myData = JSON.parse(productData);
-        let {products} = myData;
-        const productId = uid(16)
-        products.push({pId: productId , ...data})
-        let newData = JSON.stringify({products})
-        fs.writeFile(productJsonFile, newData, (err) => {
-            if(err) {
-                console.log(users);
-            }
-        })
 
-    })
-}
 
 const readData = () => {
     return new Promise( (resolve, reject) => {
@@ -31,6 +17,23 @@ const readData = () => {
 
     })
     }
+
+const addProduct = async (data) => {
+    try{
+            let {products} = await readData();
+            const productId = uid(16)
+            products.push({pId: productId , ...data})
+            let newData = JSON.stringify({products})
+            fs.writeFile(productJsonFile, newData, (err) => {
+                if(err) {
+                    console.log(users);
+                }
+            })
+    }catch(err){
+        throw err;
+    }
+}
+
 
     const findProduct = async (productName) => {
      try{
