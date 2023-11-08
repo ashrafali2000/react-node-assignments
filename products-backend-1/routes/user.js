@@ -13,10 +13,9 @@ router.post("/", async (req, res) => {
   try {
     const { firstName, lastName, email, password } = req.body;
     const user = await createUser(firstName, lastName, email, password);
-    console.log(req.body);
     res.status(200).send(user);
   } catch (err) {
-    res.status(400).send("Some thing went wrong")
+    res.status(400).send(err)
   }
 });
 module.exports = router;

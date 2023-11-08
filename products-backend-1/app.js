@@ -47,16 +47,16 @@ app.use("/", indexRoute);
 app.use("/products", product);
 
 // Users MiddleWare
-app.use("/users", user);
+app.use("/signup", user);
 
 // User created  MiddleWare
 // app.use("/users", user);
 
 // SignUp MiddleWare
-app.use("/signup", signUp);
+// app.use("/signup", signUp);
 
 // SignIn MiddleWare
-app.use("/signin", signIn);
+app.use("/login", signIn);
 
 app.listen(port, (req, res) => {
   console.log(`Server listen on Port ${port}`);

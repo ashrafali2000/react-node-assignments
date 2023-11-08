@@ -1,6 +1,6 @@
 const path = require("path")
 const fs = require("fs");
-const userJsonFile = path.join(process.cwd(),"data", "user.json");
+const userJsonFile = path.join(process.cwd(),"db", "user.json");
 
 const readData = () => {
     return new Promise((resolve, reject) => {
